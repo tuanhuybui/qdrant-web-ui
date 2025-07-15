@@ -5,7 +5,7 @@ import { bigIntJSON } from '../common/bigIntJSON';
 import { isTokenRestricted } from '../config/restricted-routes';
 
 const DEFAULT_SETTINGS = {
-  apiKey: import.meta.env.VITE_QDRANT_API_KEY || '', // ✅ Đọc key từ biến môi trường
+  apiKey: import.meta.env.VITE_QDRANT_API_KEY || '',
 };
 
 // Write settings to local storage
@@ -19,10 +19,7 @@ const getPersistedSettings = () => {
 
   if (settings) return bigIntJSON.parse(settings);
 
-  // ✅ Nếu localStorage chưa có, dùng từ môi trường
-  return {
-    apiKey: import.meta.env.VITE_QDRANT_API_KEY || '',
-  };
+  return DEFAULT_SETTINGS; // ✅ Dùng DEFAULT_SETTINGS
 };
 
 // React context to store the settings
